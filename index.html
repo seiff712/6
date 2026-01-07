@@ -236,6 +236,10 @@ function setBg(url){
 }
 
 function showPage(id){
+
+  // ✅ اقفل الفيديو لما تسيب صفحة الفيديو
+  stopVideo();
+
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   const page = document.getElementById(id);
   page.classList.add("active");
@@ -528,6 +532,12 @@ const vidCounter = document.getElementById("vidCounter");
 const nextVid = document.getElementById("nextVid");
 const prevVid = document.getElementById("prevVid");
 const videoBox = document.getElementById("videoBox");
+
+function stopVideo(){
+  if(!vidPlayer) return;
+  try { vidPlayer.pause(); } catch(e) {}
+  vidPlayer.currentTime = 0;
+}
 
 function loadVideo(i){
   currentVid = i;
